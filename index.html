@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Peta SIG Terdistribusi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; width: 100%; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Leaflet Omnivore for KML support -->
+  <script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
+
+  <script>
+    const map = L.map('map').setView([-7.8, 110.4], 14); // Ubah lokasi sesuai
+
+    // Tambahkan tile OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Tampilkan Apotek.kml
+    const apotekLayer = omnivore.kml('Apotek.kml')
+      .on('ready', function () {
+        console.log('Apotek loaded');
+      })
+      .addTo(map);
+
+    // Tampilkan Jalan HR. Soebrantas.kml
+    const jalanLayer = omnivore.kml('Jalan HR. Soebrantas.kml')
+      .on('ready', function () {
+        console.log('Jalan HR. Soebrantas loaded');
+      })
+      .addTo(map);
+
+    // Tampilkan Perumahan Citra Kencana.kml
+    const perumLayer = omnivore.kml('Perumahan Citra Kencana.kml')
+      .on('ready', function () {
+        console.log('Perumahan Citra Kencana loaded');
+      })
+      .addTo(map);
+  </script>
+</body>
+</html>
