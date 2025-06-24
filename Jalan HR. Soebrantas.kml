@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Jalan_HR._Soebrantas" id="Jalan_HR._Soebrantas">
+	<SimpleField name="Id" type="int"></SimpleField>
+</Schema>
+<Folder><name>Jalan_HR._Soebrantas</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Jalan_HR._Soebrantas">
+		<SimpleData name="Id">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <LineString><coordinates>101.368158145975,0.464386294892135 101.388049562375,0.464158129844584</coordinates></LineString>
+  </Placemark>
+</Folder>
+</Document></kml>
