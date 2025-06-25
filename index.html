@@ -48,6 +48,11 @@
         console.log('Perumahan Citra kencana loaded');
       })
       .addTo(map);
+    const AreaLayer = omnivore.kml('Area Peta.kml')
+      .on('ready', function () {
+        console.log('Area Peta loaded');
+      })
+      .addTo(map);
   </script>
 </body>
 </html>
