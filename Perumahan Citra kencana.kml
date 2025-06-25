@@ -6,7 +6,7 @@
 </Schema>
 <Folder><name>Perumahan_Citra_kencana</name>
   <Placemark>
-	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<Style><LineStyle><color>FF0000</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
 	<ExtendedData><SchemaData schemaUrl="#Perumahan_Citra_kencana">
 		<SimpleData name="Id">0</SimpleData>
 	</SchemaData></ExtendedData>
