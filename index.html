@@ -2,57 +2,95 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Peta SIG Terdistribusi</title>
+  <title>Peta SIG Pekanbaru</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     #map { height: 100vh; width: 100%; }
+    #tambahBtn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: white;
+      padding: 8px 12px;
+      border: 1px solid #888;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
+  <div id="tambahBtn">➕ Tambah Apotek</div>
   <div id="map"></div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <!-- Leaflet Omnivore for KML support -->
   <script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
 
   <script>
-    const map = L.map('map').setView([-7.8, 110.4], 14); // Ubah lokasi sesuai
+    // Inisialisasi peta Pekanbaru
+    const map = L.map('map').setView([0.5071, 101.4478], 14);
 
-    // Tambahkan tile OpenStreetMap
+    // Basemap
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
+    // Warna untuk tiap layer
+    const jalanStyle = {
+      color: 'orange',
+      weight: 3
+    };
+
+    const perumStyle = {
+      color: 'green',
+      fillColor: 'lightgreen',
+      fillOpacity: 0.4,
+      weight: 2
+    };
+
     // Tampilkan Apotek.kml
-    const apotekLayer = omnivore.kml('Apotek.kml')
+    omnivore.kml('Apotek.kml')
       .on('ready', function () {
         console.log('Apotek loaded');
       })
       .addTo(map);
 
-    // Tampilkan Jalan HR. Soebrantas.kml
-    const jalanLayer = omnivore.kml('Jalan HR. Soebrantas.kml')
-      .on('ready', function () {
-        console.log('Jalan HR. Soebrantas loaded');
-      })
-      .addTo(map);
+    // Tampilkan Jalan HR. Soebrantas dengan warna oranye
+    omnivore.kml('Jalan HR. Soebrantas.kml', null, L.geoJson(null, {
+      style: jalanStyle
+    })).addTo(map);
 
-    // Tampilkan Perumahan Citra Kencana.kml
-    const perumLayer = omnivore.kml('Perumahan Citra kencana.kml')
-      .on('ready', function () {
-        console.log('Perumahan Citra kencana loaded');
-      })
-      .addTo(map);
-    const AreaLayer = omnivore.kml('Area Peta.kml')
-      .on('ready', function () {
-        console.log('Area Peta loaded');
-      })
-      .addTo(map);
+    // Tampilkan Perumahan Citra Kencana dengan warna hijau
+    omnivore.kml('Perumahan Citra Kencana.kml', null, L.geoJson(null, {
+      style: perumStyle
+    })).addTo(map);
+
+    // Mode tambah titik apotek
+    let modeTambah = false;
+
+    document.getElementById("tambahBtn").onclick = () => {
+      modeTambah = !modeTambah;
+      alert(modeTambah
+        ? "Klik lokasi di peta untuk menambahkan titik apotek."
+        : "Mode tambah apotek dimatikan.");
+    };
+
+    // Tambah marker apotek baru
+    map.on('click', function (e) {
+      if (!modeTambah) return;
+
+      const { lat, lng } = e.latlng;
+
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`📍 Apotek baru<br>Lat: ${lat.toFixed(5)}<br>Lng: ${lng.toFixed(5)}`)
+        .openPopup();
+
+      modeTambah = false;
+    });
   </script>
 </body>
 </html>
