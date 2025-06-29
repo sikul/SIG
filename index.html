@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Peta SIG Pekanbaru</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map { height: 100vh; width: 100%; }
+    #tambahBtn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: white;
+      padding: 8px 12px;
+      border: 1px solid #888;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="tambahBtn">➕ Tambah Apotek</div>
+  <div id="map"></div>
+
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore/leaflet-omnivore.min.js"></script>
+
+  <script>
+    const map = L.map('map').setView([0.5071, 101.4478], 14);
+
+    // Basemap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Styles warna berbeda untuk masing-masing layer
+    const styles = {
+      'Jalan HR. Soebrantas.kml': { color: 'orange', weight: 3 },
+      'Jalan Kubang Raya.kml': { color: 'red', weight: 3 },
+      'Jalan Suka Karya.kml': { color: 'blue', weight: 3 },
+      'Perumahan Citra kencana.kml': { color: 'green', fillColor: 'lightgreen', fillOpacity: 0.5, weight: 2 },
+      'Perumahan Budi Suka Damai.kml': { color: 'purple', fillColor: '#c39bd3', fillOpacity: 0.5, weight: 2 },
+      'Perumahan Bumi Sari Akasia.kml': { color: '#e67e22', fillColor: '#fdebd0', fillOpacity: 0.5, weight: 2 },
+      'Area.kml': { color: 'brown', fillColor: '#f5cba7', fillOpacity: 0.4, weight: 2 }
+    };
+
+    // Fungsi untuk tambah layer dengan style
+    function addStyledKML(filename, style) {
+      omnivore.kml(filename, null, L.geoJson(null, { style })).addTo(map);
+    }
+
+    // Layer Apotek (titik, tanpa style khusus)
+    omnivore.kml('Apotek.kml').addTo(map);
+
+    // Tambahkan semua layer dengan warna sesuai
+    for (const [filename, style] of Object.entries(styles)) {
+      addStyledKML(filename, style);
+    }
+
+    // Fitur tambah apotek baru manual
+    let modeTambah = false;
+
+    document.getElementById("tambahBtn").onclick = () => {
+      modeTambah = !modeTambah;
+      alert(modeTambah
+        ? "Klik lokasi di peta untuk menambahkan apotek baru."
+        : "Mode tambah apotek dimatikan.");
+    };
+
+    map.on('click', function (e) {
+      if (!modeTambah) return;
+
+      const { lat, lng } = e.latlng;
+
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`📍 Apotek baru<br>Lat: ${lat.toFixed(5)}<br>Lng: ${lng.toFixed(5)}`)
+        .openPopup();
+
+      modeTambah = false;
+    });
+  </script>
+</body>
+</html>
