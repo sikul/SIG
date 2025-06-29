@@ -22,6 +22,7 @@
   </style>
 </head>
 <body>
+  <div id="tambahBtn">➕ Tambah Apotek</div>
   <div id="map"></div>
 
   <!-- Leaflet -->
@@ -38,7 +39,13 @@
 
     // Styles warna berbeda untuk masing-masing layer
     const styles = {
-      'Perumahan Bumi Sari Akasia.kml': { color: '#e67e22', fillColor: '#fdebd0', fillOpacity: 0.5, weight: 2} 
+      'Jalan HR. Soebrantas.kml': { color: 'orange', weight: 3 },
+      'Jalan Kubang Raya.kml': { color: 'red', weight: 3 },
+      'Jalan Suka Karya.kml': { color: 'blue', weight: 3 },
+      'Perumahan Citra kencana.kml': { color: 'green', fillColor: 'lightgreen', fillOpacity: 0.5, weight: 2 },
+      'Perumahan Budi Suka Damai.kml': { color: 'purple', fillColor: '#c39bd3', fillOpacity: 0.5, weight: 2 },
+      'Perumahan Bumi Sari Akasia.kml': { color: '#e67e22', fillColor: '#fdebd0', fillOpacity: 0.5, weight: 2 },
+      'Area.kml': { color: 'brown', fillColor: '#f5cba7', fillOpacity: 0.4, weight: 2 }
     };
 
     // Fungsi untuk tambah layer dengan style
@@ -47,7 +54,7 @@
     }
 
     // Layer Apotek (titik, tanpa style khusus)
-  
+    omnivore.kml('Apotek.kml').addTo(map);
 
     // Tambahkan semua layer dengan warna sesuai
     for (const [filename, style] of Object.entries(styles)) {
