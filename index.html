@@ -22,7 +22,6 @@
   </style>
 </head>
 <body>
-  <div id="tambahBtn">➕ Tambah Apotek</div>
   <div id="map"></div>
 
   <!-- Leaflet -->
@@ -38,42 +37,22 @@
     }).addTo(map);
 
     // Styles warna berbeda untuk masing-masing layer
-    
+    const styles = {
+      'Area.kml': { color: 'brown', fillColor: '#f5cba7', fillOpacity: 0.4, weight: 2 }
+    };
 
     // Fungsi untuk tambah layer dengan style
     function addStyledKML(filename, style) {
       omnivore.kml(filename, null, L.geoJson(null, { style })).addTo(map);
     }
 
-    // Layer Apotek (titik, tanpa style khusus)
-    omnivore.kml('Apotek.kml').addTo(map);
-
+  
     // Tambahkan semua layer dengan warna sesuai
     for (const [filename, style] of Object.entries(styles)) {
       addStyledKML(filename, style);
     }
 
-    // Fitur tambah apotek baru manual
-    let modeTambah = false;
 
-    document.getElementById("tambahBtn").onclick = () => {
-      modeTambah = !modeTambah;
-      alert(modeTambah
-        ? "Klik lokasi di peta untuk menambahkan apotek baru."
-        : "Mode tambah apotek dimatikan.");
-    };
-
-    map.on('click', function (e) {
-      if (!modeTambah) return;
-
-      const { lat, lng } = e.latlng;
-
-      L.marker([lat, lng])
-        .addTo(map)
-        .bindPopup(`📍 Apotek baru<br>Lat: ${lat.toFixed(5)}<br>Lng: ${lng.toFixed(5)}`)
-        .openPopup();
-
-      modeTambah = false;
     });
   </script>
 </body>
