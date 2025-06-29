@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Perumahan_Bumi_Sari_Akasia" id="Perumahan_Bumi_Sari_Akasia">
+	<SimpleField name="Id" type="int"></SimpleField>
+</Schema>
+<Folder><name>Perumahan_Bumi_Sari_Akasia</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Perumahan_Bumi_Sari_Akasia">
+		<SimpleData name="Id">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>101.384498530211,0.461273368044387 101.385852616072,0.46135916062558 101.385860475211,0.460410855232673 101.384573399325,0.460403488379249 101.384498530211,0.461273368044387</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Perumahan_Budi_Suka_Damai" id="Perumahan_Budi_Suka_Damai">
+	<SimpleField name="Id" type="int"></SimpleField>
+</Schema>
+<Folder><name>Perumahan_Budi_Suka_Damai</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Perumahan_Budi_Suka_Damai">
+		<SimpleData name="Id">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>101.383551547979,0.447201724104842 101.38304650864,0.447310761085379 101.38304068512,0.447706748414246 101.384157779839,0.447522552246454 101.384056765955,0.44710068358676 101.383551547979,0.447201724104842</coordinates></LinearRing></outerBoundaryIs></Polygon><Polygon><outerBoundaryIs><LinearRing><coordinates>101.383046627113,0.447302705201486 101.383551547979,0.447201724104842 101.384074591935,0.447088799962126 101.383955752071,0.446738233028756 101.380735191762,0.446886778341484 101.38108576936,0.447734080748339 101.38304650864,0.447310761085379 101.383046627113,0.447302705201486</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Perumahan_Budi_Suka_Damai">
+		<SimpleData name="Id">0</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>101.383955752071,0.446738233028756 101.384074591935,0.447088799962126 101.384032997982,0.446726349403547 101.383955752071,0.446738233028756</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>
